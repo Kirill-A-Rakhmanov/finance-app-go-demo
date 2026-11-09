@@ -1,0 +1,40 @@
+with-expecter: true
+dir: "{{.InterfaceDir}}/mock"
+filename: "{{.InterfaceName | snakecase}}.go"
+outpkg: "mock"
+mockname: "Mock{{.InterfaceName}}"
+resolve-type-alias: False
+disable-version-string: True
+issue-845-fix: True
+
+packages:
+  finance-app-go-demo/internal/domain/repository:
+    interfaces:
+      UserRepository:
+      AccountRepository:
+      TransactionRepository:
+      TransactionCategoryRepository:
+      CounterpartyRepository:
+      TransferRepository:
+      FeatureFlagRepository:
+      FeatureFlagOverrideRepository:
+  finance-app-go-demo/internal/application/auth:
+    interfaces:
+      PasswordService:
+      SessionStorage:
+      TokenService:
+      RecoveryStorage:
+      RecoveryNotifier:
+      RegistrationStorage:
+      RegistrationNotifier:
+      FailureLimiter:
+  finance-app-go-demo/internal/application/user:
+    interfaces:
+      SessionRevoker:
+  finance-app-go-demo/internal/application/query:
+    interfaces:
+      TransactionQueryService:
+      ReportQueryService:
+  finance-app-go-demo/pkg/transaction:
+    interfaces:
+      Manager:

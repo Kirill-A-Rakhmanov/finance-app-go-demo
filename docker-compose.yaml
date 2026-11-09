@@ -1,0 +1,66 @@
+name: finance-app-go-demo
+
+# Demo setup: everything has a default, no .env file is needed.
+# Run: docker compose up --build
+
+services:
+  app:
+    build: .
+    ports:
+      - "3100:3100"
+    environment:
+      APP_SWAGGER_ENABLED: "true"
+      AUTH_JWT_SECRET: demo-only-secret-change-me-0123456789abcdef
+      AUTH_COOKIE_SECURE: "false"
+      DATABASE_HOST: postgres
+      DATABASE_PORT: "5432"
+      DATABASE_NAME: finance-app
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: demo
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: demo
+      HTTP_TRUSTED_PROXIES: 172.16.0.0/12
+      CORS_ALLOWED_ORIGINS: http://localhost:5200
+      FRONTEND_RESET_PASSWORD_URL: http://localhost:5200/reset-password
+      FRONTEND_VERIFY_EMAIL_URL: http://localhost:5200/verify-email
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3100/health"]
+      interval: 10s
+      timeout: 5s
+      start_period: 10s
+      retries: 5
+
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: finance-app
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: demo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d finance-app"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:8.4.0
+    command: ["redis-server", "--requirepass", "demo"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a demo --no-auth-warning ping | grep -q PONG"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:

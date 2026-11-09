@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make:*)",
+      "Bash(go build:*)",
+      "Bash(go vet:*)",
+      "Bash(go test:*)",
+      "Bash(go doc:*)",
+      "Bash(go mod:*)",
+      "Bash(go tool mockery:*)",
+      "Bash(go generate ./ent)",
+      "Bash(gofmt -l:*)",
+      "Bash(gofmt -w:*)",
+      "Bash(swag init:*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}

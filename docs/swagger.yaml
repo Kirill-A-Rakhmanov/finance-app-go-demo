@@ -1,0 +1,2109 @@
+basePath: /api
+definitions:
+  account.CreateAccountRequest:
+    properties:
+      currency:
+        example: USD
+        type: string
+      icon:
+        example: icon
+        type: string
+      initialBalance:
+        example: 0
+        type: number
+      isExcludedFromCount:
+        example: false
+        type: boolean
+      isHidden:
+        example: false
+        type: boolean
+      isNegativeBalanceEnabled:
+        example: false
+        type: boolean
+      name:
+        example: My Account
+        type: string
+    required:
+    - currency
+    - icon
+    - initialBalance
+    - isExcludedFromCount
+    - isHidden
+    - isNegativeBalanceEnabled
+    - name
+    type: object
+  account.CreateAccountResponse:
+    properties:
+      account:
+        $ref: '#/definitions/dto.Account'
+    required:
+    - account
+    type: object
+  account.GetAccountByIDResponse:
+    properties:
+      account:
+        $ref: '#/definitions/dto.Account'
+    required:
+    - account
+    type: object
+  account.GetAccountsByUserIDResponse:
+    properties:
+      accounts:
+        items:
+          $ref: '#/definitions/dto.Account'
+        type: array
+    required:
+    - accounts
+    type: object
+  account.GetBalanceByAccountIdResponse:
+    properties:
+      accountID:
+        type: string
+      balance:
+        type: number
+      currency:
+        $ref: '#/definitions/dto.Currency'
+    required:
+    - accountID
+    - balance
+    - currency
+    type: object
+  account.UpdateAccountRequest:
+    properties:
+      icon:
+        example: icon
+        type: string
+      isExcludedFromCount:
+        example: false
+        type: boolean
+      isHidden:
+        example: false
+        type: boolean
+      isNegativeBalanceEnabled:
+        example: false
+        type: boolean
+      name:
+        example: My Account
+        type: string
+    required:
+    - icon
+    - isExcludedFromCount
+    - isHidden
+    - isNegativeBalanceEnabled
+    - name
+    type: object
+  account.UpdateAccountResponse:
+    properties:
+      account:
+        $ref: '#/definitions/dto.Account'
+    required:
+    - account
+    type: object
+  auth.LoginRequest:
+    properties:
+      email:
+        example: john@example.com
+        type: string
+      password:
+        example: "12345678"
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  auth.LoginResponse:
+    properties:
+      user:
+        $ref: '#/definitions/dto.User'
+    required:
+    - user
+    type: object
+  auth.LogoutResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  auth.RecoveryRequest:
+    properties:
+      email:
+        example: john@example.com
+        type: string
+    required:
+    - email
+    type: object
+  auth.RecoveryResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  auth.RefreshTokensResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  auth.RegisterRequest:
+    properties:
+      email:
+        example: john@example.com
+        type: string
+      firstName:
+        example: John
+        type: string
+      lastName:
+        example: Doe
+        type: string
+      password:
+        example: "12345678"
+        type: string
+    required:
+    - email
+    - firstName
+    - lastName
+    - password
+    type: object
+  auth.RegisterResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  auth.ResetPasswordRequest:
+    properties:
+      code:
+        example: 6f6b6b6c-1a2b-4c3d-9e8f-123456789abc
+        type: string
+      newPassword:
+        example: "12345678"
+        type: string
+    required:
+    - code
+    - newPassword
+    type: object
+  auth.ResetPasswordResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  auth.VerifyEmailRequest:
+    properties:
+      token:
+        example: 3q2-7wQ5...
+        type: string
+    required:
+    - token
+    type: object
+  auth.VerifyEmailResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  auth.VerifyResponse:
+    properties:
+      userId:
+        type: string
+    required:
+    - userId
+    type: object
+  counterparty.CreateCounterpartyRequest:
+    properties:
+      name:
+        example: Supermarket
+        type: string
+    required:
+    - name
+    type: object
+  counterparty.CreateCounterpartyResponse:
+    properties:
+      counterparty:
+        $ref: '#/definitions/dto.Counterparty'
+    required:
+    - counterparty
+    type: object
+  counterparty.DeleteCounterpartyResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  counterparty.GetCounterpartiesResponse:
+    properties:
+      counterparties:
+        items:
+          $ref: '#/definitions/dto.Counterparty'
+        type: array
+    required:
+    - counterparties
+    type: object
+  counterparty.UpdateCounterpartyRequest:
+    properties:
+      name:
+        example: Supermarket
+        type: string
+    required:
+    - name
+    type: object
+  counterparty.UpdateCounterpartyResponse:
+    properties:
+      counterparty:
+        $ref: '#/definitions/dto.Counterparty'
+    required:
+    - counterparty
+    type: object
+  currency.GetCurrenciesResponse:
+    properties:
+      currencies:
+        items:
+          $ref: '#/definitions/dto.Currency'
+        type: array
+    required:
+    - currencies
+    type: object
+  dto.Account:
+    properties:
+      adjustment:
+        type: number
+      currency:
+        $ref: '#/definitions/dto.Currency'
+      icon:
+        type: string
+      id:
+        type: string
+      isExcludedFromCount:
+        type: boolean
+      isHidden:
+        type: boolean
+      isNegativeBalanceEnabled:
+        type: boolean
+      name:
+        type: string
+      userId:
+        type: string
+    required:
+    - adjustment
+    - currency
+    - icon
+    - id
+    - isExcludedFromCount
+    - isHidden
+    - isNegativeBalanceEnabled
+    - name
+    - userId
+    type: object
+  dto.Counterparty:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      userId:
+        type: string
+    required:
+    - id
+    - name
+    - userId
+    type: object
+  dto.Currency:
+    properties:
+      code:
+        example: USD
+        type: string
+      decimals:
+        example: 2
+        type: integer
+      symbol:
+        example: $
+        type: string
+    required:
+    - code
+    - decimals
+    - symbol
+    type: object
+  dto.Transaction:
+    properties:
+      accountId:
+        type: string
+      amount:
+        type: number
+      counterpartyId:
+        type: string
+      date:
+        type: string
+      id:
+        type: string
+      isConfirmed:
+        type: boolean
+      name:
+        type: string
+      transactionCategoryId:
+        type: string
+      transferId:
+        type: string
+      type:
+        $ref: '#/definitions/enum.TransactionType'
+    required:
+    - accountId
+    - amount
+    - date
+    - id
+    - isConfirmed
+    - type
+    type: object
+  dto.TransactionCategory:
+    properties:
+      color:
+        type: string
+      icon:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      parentId:
+        type: string
+      type:
+        $ref: '#/definitions/enum.TransactionCategoryType'
+      userId:
+        type: string
+    required:
+    - color
+    - icon
+    - id
+    - name
+    - type
+    - userId
+    type: object
+  dto.Transfer:
+    properties:
+      date:
+        type: string
+      fromAccountId:
+        type: string
+      fromAmount:
+        type: number
+      id:
+        type: string
+      toAccountId:
+        type: string
+      toAmount:
+        type: number
+    required:
+    - date
+    - fromAccountId
+    - fromAmount
+    - id
+    - toAccountId
+    - toAmount
+    type: object
+  dto.User:
+    properties:
+      email:
+        type: string
+      firstName:
+        type: string
+      id:
+        type: string
+      lastName:
+        type: string
+      middleName:
+        type: string
+    required:
+    - email
+    - firstName
+    - id
+    - lastName
+    type: object
+  enum.TransactionCategoryType:
+    enum:
+    - income
+    - expense
+    type: string
+    x-enum-varnames:
+    - Income
+    - Expense
+  enum.TransactionType:
+    enum:
+    - expense
+    - income
+    type: string
+    x-enum-varnames:
+    - TransactionExpense
+    - TransactionIncome
+  feature_flag.FeatureFlag:
+    properties:
+      enabled:
+        type: boolean
+      key:
+        example: ai-receipts
+        type: string
+    required:
+    - enabled
+    - key
+    type: object
+  feature_flag.GetAllFeatureFlagsResponse:
+    properties:
+      featureFlags:
+        items:
+          $ref: '#/definitions/feature_flag.FeatureFlag'
+        type: array
+    required:
+    - featureFlags
+    type: object
+  feature_flag.GetFeatureFlagsResponse:
+    properties:
+      featureFlags:
+        items:
+          $ref: '#/definitions/feature_flag.FeatureFlag'
+        type: array
+    required:
+    - featureFlags
+    type: object
+  finance-app-go-demo_internal_adapter_http_report.BalanceReportItem:
+    properties:
+      balance:
+        type: number
+      dateKey:
+        example: "2026-03-01"
+        type: string
+    required:
+    - balance
+    - dateKey
+    type: object
+  finance-app-go-demo_internal_adapter_http_report.CategoryDynamicReportItem:
+    properties:
+      amount:
+        type: number
+      month:
+        example: 2026-03
+        type: string
+      transactionCategoryId:
+        type: string
+    required:
+    - amount
+    - month
+    - transactionCategoryId
+    type: object
+  finance-app-go-demo_internal_adapter_http_report.CategoryReportItem:
+    properties:
+      amount:
+        type: number
+      share:
+        type: number
+      transactionCategoryId:
+        type: string
+    required:
+    - amount
+    - share
+    type: object
+  finance-app-go-demo_internal_adapter_http_report.CounterpartyReportItem:
+    properties:
+      amount:
+        type: number
+      counterpartyId:
+        type: string
+      share:
+        type: number
+    required:
+    - amount
+    - share
+    type: object
+  finance-app-go-demo_internal_adapter_http_report.IncomeExpenseReportItem:
+    properties:
+      expense:
+        type: number
+      income:
+        type: number
+      month:
+        example: 2026-03
+        type: string
+    required:
+    - expense
+    - income
+    - month
+    type: object
+  health.CheckResult:
+    properties:
+      error:
+        type: string
+      status:
+        type: string
+    type: object
+  health.HealthResponse:
+    properties:
+      checks:
+        additionalProperties:
+          $ref: '#/definitions/health.CheckResult'
+        type: object
+      status:
+        type: string
+    type: object
+  query.SortDirection:
+    enum:
+    - ASC
+    - DESC
+    type: string
+    x-enum-varnames:
+    - Ascending
+    - Descending
+  query.TransactionSortBy:
+    enum:
+    - date
+    - amount
+    type: string
+    x-enum-varnames:
+    - TransactionSortByDate
+    - TransactionSortByAmount
+  report.GetBalanceReportResponse:
+    properties:
+      granularity:
+        enum:
+        - day
+        - week
+        - month
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/finance-app-go-demo_internal_adapter_http_report.BalanceReportItem'
+        type: array
+    required:
+    - granularity
+    - items
+    type: object
+  report.GetCategoryDynamicReportResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/finance-app-go-demo_internal_adapter_http_report.CategoryDynamicReportItem'
+        type: array
+      months:
+        items:
+          type: string
+        type: array
+      transactionCategories:
+        items:
+          $ref: '#/definitions/dto.TransactionCategory'
+        type: array
+    required:
+    - items
+    - months
+    - transactionCategories
+    type: object
+  report.GetCategoryReportResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/finance-app-go-demo_internal_adapter_http_report.CategoryReportItem'
+        type: array
+      total:
+        type: number
+      transactionCategories:
+        items:
+          $ref: '#/definitions/dto.TransactionCategory'
+        type: array
+    required:
+    - items
+    - total
+    - transactionCategories
+    type: object
+  report.GetCounterpartyReportResponse:
+    properties:
+      counterparties:
+        items:
+          $ref: '#/definitions/dto.Counterparty'
+        type: array
+      items:
+        items:
+          $ref: '#/definitions/finance-app-go-demo_internal_adapter_http_report.CounterpartyReportItem'
+        type: array
+      total:
+        type: number
+    required:
+    - counterparties
+    - items
+    - total
+    type: object
+  report.GetIncomeExpenseReportResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/finance-app-go-demo_internal_adapter_http_report.IncomeExpenseReportItem'
+        type: array
+    required:
+    - items
+    type: object
+  response.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  response.ValidationErrorResponse:
+    properties:
+      error:
+        type: string
+      fields:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+    type: object
+  transaction.CreateExpenseTransactionRequest:
+    properties:
+      accountId:
+        type: string
+      amount:
+        example: 0
+        type: number
+      counterpartyName:
+        type: string
+      date:
+        type: string
+      name:
+        example: New transaction
+        type: string
+      transactionCategoryName:
+        type: string
+    required:
+    - accountId
+    - amount
+    - date
+    type: object
+  transaction.CreateExpenseTransactionResponse:
+    properties:
+      transaction:
+        $ref: '#/definitions/dto.Transaction'
+    required:
+    - transaction
+    type: object
+  transaction.CreateIncomeTransacirionResponse:
+    properties:
+      transaction:
+        $ref: '#/definitions/dto.Transaction'
+    required:
+    - transaction
+    type: object
+  transaction.CreateIncomeTransactionRequest:
+    properties:
+      accountId:
+        type: string
+      amount:
+        example: 0
+        type: number
+      counterpartyName:
+        type: string
+      date:
+        type: string
+      name:
+        example: New transaction
+        type: string
+      transactionCategoryName:
+        type: string
+    required:
+    - accountId
+    - amount
+    - date
+    type: object
+  transaction.DeleteTransactionResponse:
+    properties:
+      balance:
+        type: number
+      message:
+        type: string
+    required:
+    - balance
+    - message
+    type: object
+  transaction.GetTransactionByIdResponse:
+    properties:
+      transaction:
+        $ref: '#/definitions/dto.Transaction'
+    required:
+    - transaction
+    type: object
+  transaction.GetTransactionsResponse:
+    properties:
+      limit:
+        type: integer
+      offset:
+        type: integer
+      order:
+        items:
+          type: string
+        type: array
+      total:
+        type: integer
+      transactions:
+        items:
+          $ref: '#/definitions/dto.Transaction'
+        type: array
+    required:
+    - limit
+    - offset
+    - order
+    - total
+    - transactions
+    type: object
+  transaction.UpdateTransactionRequest:
+    properties:
+      accountId:
+        type: string
+      amount:
+        type: number
+      counterpartyName:
+        type: string
+      date:
+        type: string
+      isConfirmed:
+        type: boolean
+      name:
+        type: string
+      transactionCategoryName:
+        type: string
+      type:
+        $ref: '#/definitions/enum.TransactionType'
+    required:
+    - accountId
+    - amount
+    - date
+    - isConfirmed
+    - type
+    type: object
+  transaction.UpdateTransactionResponse:
+    properties:
+      transaction:
+        $ref: '#/definitions/dto.Transaction'
+    required:
+    - transaction
+    type: object
+  transaction_category.CreateTransactionCategoryRequest:
+    properties:
+      color:
+        example: '#ff0000'
+        type: string
+      icon:
+        example: icon
+        type: string
+      name:
+        example: Custom category
+        type: string
+      parentId:
+        type: string
+      type:
+        example: expense
+        type: string
+    required:
+    - color
+    - icon
+    - name
+    - type
+    type: object
+  transaction_category.CreateTransactionCategoryResponse:
+    properties:
+      transactionCategory:
+        $ref: '#/definitions/dto.TransactionCategory'
+    required:
+    - transactionCategory
+    type: object
+  transaction_category.DeleteTransactionCategoryResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  transaction_category.GetTransactionCategoriesResponse:
+    properties:
+      transactionCategories:
+        items:
+          $ref: '#/definitions/dto.TransactionCategory'
+        type: array
+    required:
+    - transactionCategories
+    type: object
+  transaction_category.UpdateTransactionCategoryRequest:
+    properties:
+      color:
+        example: '#ff0000'
+        type: string
+      icon:
+        example: icon
+        type: string
+      name:
+        example: Custom category
+        type: string
+      parentId:
+        type: string
+    required:
+    - color
+    - icon
+    - name
+    type: object
+  transaction_category.UpdateTransactionCategoryResponse:
+    properties:
+      transactionCategory:
+        $ref: '#/definitions/dto.TransactionCategory'
+    required:
+    - transactionCategory
+    type: object
+  transfer.CreateTransferRequest:
+    properties:
+      date:
+        type: string
+      fromAccountId:
+        type: string
+      fromAmount:
+        type: number
+      toAccountId:
+        type: string
+      toAmount:
+        type: number
+    required:
+    - date
+    - fromAccountId
+    - fromAmount
+    - toAccountId
+    - toAmount
+    type: object
+  transfer.CreateTransferResponse:
+    properties:
+      transactions:
+        items:
+          $ref: '#/definitions/dto.Transaction'
+        type: array
+      transfer:
+        $ref: '#/definitions/dto.Transfer'
+    required:
+    - transactions
+    - transfer
+    type: object
+  transfer.DeleteTransferResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  user.ChangePasswordRequest:
+    properties:
+      newPassword:
+        example: "87654321"
+        type: string
+      oldPassword:
+        example: "12345678"
+        type: string
+    required:
+    - newPassword
+    - oldPassword
+    type: object
+  user.ChangePasswordResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  user.CurrencyBalance:
+    properties:
+      amount:
+        type: number
+      currency:
+        $ref: '#/definitions/dto.Currency'
+    required:
+    - amount
+    - currency
+    type: object
+  user.GetCurrentUserBalanceResponse:
+    properties:
+      balances:
+        items:
+          $ref: '#/definitions/user.CurrencyBalance'
+        type: array
+    required:
+    - balances
+    type: object
+  user.GetCurrentUserResponse:
+    properties:
+      user:
+        $ref: '#/definitions/dto.User'
+    required:
+    - user
+    type: object
+  user.UpdateUserRequest:
+    properties:
+      firstName:
+        example: John
+        type: string
+      lastName:
+        example: Doe
+        type: string
+    required:
+    - firstName
+    - lastName
+    type: object
+  user.UpdateUserResponse:
+    properties:
+      user:
+        $ref: '#/definitions/dto.User'
+    required:
+    - user
+    type: object
+host: localhost:3100
+info:
+  contact: {}
+  description: Finance application API
+  title: Finance App API
+  version: "1.0"
+paths:
+  /account:
+    post:
+      consumes:
+      - application/json
+      description: Create new account for current user
+      parameters:
+      - description: Create account request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/account.CreateAccountRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/account.CreateAccountResponse'
+      summary: Create account
+      tags:
+      - account
+  /account/{accountID}:
+    get:
+      consumes:
+      - application/json
+      description: Get account by id if it belongs to the current user
+      parameters:
+      - description: Account ID
+        format: uuid
+        in: path
+        name: accountID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/account.GetAccountByIDResponse'
+      summary: Get account by id
+      tags:
+      - account
+    patch:
+      consumes:
+      - application/json
+      description: Update the account for current user
+      parameters:
+      - description: Account ID
+        format: uuid
+        in: path
+        name: accountID
+        required: true
+        type: string
+      - description: Update account request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/account.UpdateAccountRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/account.UpdateAccountResponse'
+      summary: Update account
+      tags:
+      - account
+  /account/{accountID}/balance:
+    get:
+      consumes:
+      - application/json
+      description: Get balance by account id
+      parameters:
+      - description: Account ID
+        format: uuid
+        in: path
+        name: accountID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/account.GetBalanceByAccountIdResponse'
+      summary: Get balance
+      tags:
+      - account
+  /account/list:
+    get:
+      consumes:
+      - application/json
+      description: Get current user accounts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/account.GetAccountsByUserIDResponse'
+      summary: Get accounts
+      tags:
+      - account
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Login existing user. Unknown email and wrong password both return
+        401 invalid credentials. After 5 failed attempts for an email within 15 minutes
+        the endpoint answers 429 with a Retry-After header.
+      parameters:
+      - description: Login request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.LoginResponse'
+      summary: Login user
+      tags:
+      - auth
+  /auth/logout:
+    post:
+      consumes:
+      - application/json
+      description: Logout existing user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.LogoutResponse'
+      summary: Logout user
+      tags:
+      - auth
+  /auth/recovery:
+    post:
+      consumes:
+      - application/json
+      description: Sends a password recovery code to the user's email. The response
+        is the same whether or not the account exists, and a repeated request for
+        the same email within 2 minutes sends nothing.
+      parameters:
+      - description: Recovery request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.RecoveryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.RecoveryResponse'
+      summary: Request password recovery
+      tags:
+      - auth
+  /auth/refresh:
+    post:
+      consumes:
+      - application/json
+      description: Refresh token pair and set cookies
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.RefreshTokensResponse'
+      summary: Refresh tokens
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Starts a registration and emails a confirmation link
+      parameters:
+      - description: Register request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.RegisterResponse'
+      summary: Register user
+      tags:
+      - auth
+  /auth/reset-password:
+    post:
+      consumes:
+      - application/json
+      description: Resets the password using a recovery code
+      parameters:
+      - description: Reset password request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.ResetPasswordResponse'
+      summary: Reset password
+      tags:
+      - auth
+  /auth/verify:
+    get:
+      consumes:
+      - application/json
+      description: Verify access token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.VerifyResponse'
+      summary: Verify
+      tags:
+      - auth
+  /auth/verify-email:
+    post:
+      consumes:
+      - application/json
+      description: Creates the account for the token from the confirmation email
+      parameters:
+      - description: Confirmation token
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.VerifyEmailRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.VerifyEmailResponse'
+      summary: Confirm registration
+      tags:
+      - auth
+  /counterparty:
+    post:
+      consumes:
+      - application/json
+      description: Create new counterparty for current user
+      parameters:
+      - description: Create counterparty request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/counterparty.CreateCounterpartyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/counterparty.CreateCounterpartyResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.ValidationErrorResponse'
+      summary: Create counterparty
+      tags:
+      - counterparty
+  /counterparty/{counterpartyID}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete counterparty by id; its transactions are kept without a
+        counterparty
+      parameters:
+      - description: Counterparty ID
+        format: uuid
+        in: path
+        name: counterpartyID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/counterparty.DeleteCounterpartyResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Delete counterparty
+      tags:
+      - counterparty
+    patch:
+      consumes:
+      - application/json
+      description: Rename the counterparty for current user
+      parameters:
+      - description: Counterparty ID
+        format: uuid
+        in: path
+        name: counterpartyID
+        required: true
+        type: string
+      - description: Update counterparty request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/counterparty.UpdateCounterpartyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/counterparty.UpdateCounterpartyResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.ValidationErrorResponse'
+      summary: Update counterparty
+      tags:
+      - counterparty
+  /counterparty/list:
+    get:
+      consumes:
+      - application/json
+      description: Get current user counterparties
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/counterparty.GetCounterpartiesResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Get counterparties
+      tags:
+      - counterparty
+  /currency/list:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all supported currencies
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/currency.GetCurrenciesResponse'
+      summary: Get currencies
+      tags:
+      - currency
+  /feature-flag/global:
+    get:
+      consumes:
+      - application/json
+      description: Global values of all feature flags, without user overrides
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/feature_flag.GetAllFeatureFlagsResponse'
+      summary: Get global feature flags
+      tags:
+      - feature-flag
+  /feature-flag/list:
+    get:
+      consumes:
+      - application/json
+      description: 'Feature flags with the value effective for the current user: the
+        user''s own override when there is one, the global value otherwise'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/feature_flag.GetFeatureFlagsResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Get feature flags
+      tags:
+      - feature-flag
+  /health:
+    get:
+      description: Check application and dependency (Postgres, Redis) health
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health.HealthResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/health.HealthResponse'
+      summary: Health check
+      tags:
+      - health
+  /report/balance:
+    get:
+      consumes:
+      - application/json
+      description: How the total balance of the accounts changed over a period, in
+        a single currency
+      parameters:
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: accountIds
+        type: array
+      - in: query
+        name: currency
+        required: true
+        type: string
+      - in: query
+        name: periodEnd
+        type: integer
+      - in: query
+        name: periodStart
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/report.GetBalanceReportResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.ValidationErrorResponse'
+      summary: Get balance report
+      tags:
+      - report
+  /report/categories:
+    get:
+      consumes:
+      - application/json
+      description: Amounts of confirmed transactions grouped by category in a single
+        currency, with each category's share of the total. Transfers are excluded;
+        transactions without a category are returned as an item with a null category.
+      parameters:
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: accountIds
+        type: array
+      - in: query
+        name: currency
+        required: true
+        type: string
+      - in: query
+        name: groupSubcategories
+        type: boolean
+      - in: query
+        name: periodEnd
+        type: integer
+      - in: query
+        name: periodStart
+        type: integer
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: transactionCategoryIds
+        type: array
+      - enum:
+        - expense
+        - income
+        in: query
+        name: type
+        required: true
+        type: string
+        x-enum-varnames:
+        - TransactionExpense
+        - TransactionIncome
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/report.GetCategoryReportResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.ValidationErrorResponse'
+      summary: Get category report
+      tags:
+      - report
+  /report/category-dynamic:
+    get:
+      consumes:
+      - application/json
+      description: Amounts of confirmed transactions by calendar month and category
+        in a single currency
+      parameters:
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: accountIds
+        type: array
+      - in: query
+        name: currency
+        required: true
+        type: string
+      - in: query
+        name: periodEnd
+        type: integer
+      - in: query
+        name: periodStart
+        type: integer
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: transactionCategoryIds
+        required: true
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/report.GetCategoryDynamicReportResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.ValidationErrorResponse'
+      summary: Get category dynamic report
+      tags:
+      - report
+  /report/counterparties:
+    get:
+      consumes:
+      - application/json
+      description: Amounts of confirmed transactions grouped by counterparty in a
+        single currency, with each counterparty's share of the total. Transfers are
+        excluded; transactions without a counterparty are returned as an item with
+        a null counterparty.
+      parameters:
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: accountIds
+        type: array
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: counterpartyIds
+        type: array
+      - in: query
+        name: currency
+        required: true
+        type: string
+      - in: query
+        name: periodEnd
+        type: integer
+      - in: query
+        name: periodStart
+        type: integer
+      - enum:
+        - expense
+        - income
+        in: query
+        name: type
+        required: true
+        type: string
+        x-enum-varnames:
+        - TransactionExpense
+        - TransactionIncome
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/report.GetCounterpartyReportResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.ValidationErrorResponse'
+      summary: Get counterparty report
+      tags:
+      - report
+  /report/income-expense:
+    get:
+      consumes:
+      - application/json
+      description: Income and expense of confirmed transactions by calendar month
+        in a single currency
+      parameters:
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: accountIds
+        type: array
+      - in: query
+        name: currency
+        required: true
+        type: string
+      - in: query
+        name: periodEnd
+        type: integer
+      - in: query
+        name: periodStart
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/report.GetIncomeExpenseReportResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.ValidationErrorResponse'
+      summary: Get income and expense report
+      tags:
+      - report
+  /transaction-category:
+    post:
+      consumes:
+      - application/json
+      description: Create new transaction category for current user
+      parameters:
+      - description: Create transaction category request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/transaction_category.CreateTransactionCategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction_category.CreateTransactionCategoryResponse'
+      summary: Create transaction category
+      tags:
+      - transaction category
+  /transaction-category/{transactionCategoryID}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete transaction category by id
+      parameters:
+      - description: Transaction category ID
+        format: uuid
+        in: path
+        name: transactionCategoryID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction_category.DeleteTransactionCategoryResponse'
+      summary: Delete transaction category
+      tags:
+      - transaction category
+    patch:
+      consumes:
+      - application/json
+      description: Update the transaction category for current user
+      parameters:
+      - description: Transaction category ID
+        format: uuid
+        in: path
+        name: transactionCategoryID
+        required: true
+        type: string
+      - description: Update transaction category request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/transaction_category.UpdateTransactionCategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction_category.UpdateTransactionCategoryResponse'
+      summary: Update transaction category
+      tags:
+      - transaction category
+  /transaction-category/list:
+    get:
+      consumes:
+      - application/json
+      description: Get current user transaction categories
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction_category.GetTransactionCategoriesResponse'
+      summary: Get transaction categories
+      tags:
+      - transaction category
+  /transaction/{transactionID}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete transaction by id
+      parameters:
+      - description: Transaction ID
+        format: uuid
+        in: path
+        name: transactionID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction.DeleteTransactionResponse'
+      summary: Delete transaction
+      tags:
+      - transaction
+    get:
+      consumes:
+      - application/json
+      description: Get transaction by ID
+      parameters:
+      - description: Transaction ID
+        format: uuid
+        in: path
+        name: transactionID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction.GetTransactionByIdResponse'
+      summary: Get transaction
+      tags:
+      - transaction
+    patch:
+      consumes:
+      - application/json
+      description: Update the transaction. If accountId differs from the transaction's
+        current account the transaction is moved there (same currency only).
+      parameters:
+      - description: Transaction ID
+        format: uuid
+        in: path
+        name: transactionID
+        required: true
+        type: string
+      - description: Update transaction request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/transaction.UpdateTransactionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction.UpdateTransactionResponse'
+      summary: Update transaction
+      tags:
+      - transaction
+  /transaction/expense:
+    post:
+      consumes:
+      - application/json
+      description: Create a new transaction
+      parameters:
+      - description: Create expense transaction request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/transaction.CreateExpenseTransactionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction.CreateExpenseTransactionResponse'
+      summary: Create a new transaction
+      tags:
+      - transaction
+  /transaction/income:
+    post:
+      consumes:
+      - application/json
+      description: Create a new transaction
+      parameters:
+      - description: Create income  request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/transaction.CreateIncomeTransactionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction.CreateIncomeTransacirionResponse'
+      summary: Create a new transaction
+      tags:
+      - transaction
+  /transaction/list:
+    get:
+      consumes:
+      - application/json
+      description: Get transactions with filters, sorting and pagination
+      parameters:
+      - format: uuid
+        in: query
+        name: accountId
+        type: string
+      - in: query
+        name: limit
+        required: true
+        type: integer
+      - in: query
+        name: offset
+        required: true
+        type: integer
+      - in: query
+        name: periodEnd
+        type: integer
+      - in: query
+        name: periodStart
+        type: integer
+      - enum:
+        - date
+        - amount
+        in: query
+        name: sortBy
+        type: string
+        x-enum-varnames:
+        - TransactionSortByDate
+        - TransactionSortByAmount
+      - enum:
+        - ASC
+        - DESC
+        in: query
+        name: sortDirection
+        type: string
+        x-enum-varnames:
+        - Ascending
+        - Descending
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: transactionCategoryIds
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transaction.GetTransactionsResponse'
+      summary: Get transactions
+      tags:
+      - transaction
+  /transfer:
+    post:
+      consumes:
+      - application/json
+      description: Create a new transfer
+      parameters:
+      - description: Create transfer request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/transfer.CreateTransferRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transfer.CreateTransferResponse'
+      summary: Create a new transfer
+      tags:
+      - transfer
+  /transfer/{transferID}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete transfer by id
+      parameters:
+      - description: Transfer ID
+        format: uuid
+        in: path
+        name: transferID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transfer.DeleteTransferResponse'
+      summary: Delete transfer
+      tags:
+      - transfer
+  /user/current:
+    get:
+      consumes:
+      - application/json
+      description: Get current authorized user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.GetCurrentUserResponse'
+      summary: Get current user
+      tags:
+      - user
+    patch:
+      consumes:
+      - application/json
+      description: Update the first and last name of the current user
+      parameters:
+      - description: Update user request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.UpdateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.UpdateUserResponse'
+      summary: Update current user
+      tags:
+      - user
+  /user/current/balance:
+    get:
+      consumes:
+      - application/json
+      description: Get current user balances grouped by currency
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.GetCurrentUserBalanceResponse'
+      summary: Get user balance
+      tags:
+      - user
+  /user/current/password:
+    patch:
+      consumes:
+      - application/json
+      description: Change the password of the current user and sign out all other
+        sessions. After 5 wrong current passwords within 15 minutes the endpoint answers
+        429 with a Retry-After header.
+      parameters:
+      - description: Change password request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.ChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.ChangePasswordResponse'
+      summary: Change password
+      tags:
+      - user
+swagger: "2.0"

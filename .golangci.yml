@@ -1,0 +1,12 @@
+version: "2"
+
+linters:
+  exclusions:
+    rules:
+      - linters: [errcheck]
+        text: "`[^`]*\\.Close` is not checked"
+      - linters: [staticcheck]
+        text: "QF1008"
+      - linters: [unused]
+        path: internal/infrastructure/postgres/
+        text: "func to\\w+Entity is unused"
